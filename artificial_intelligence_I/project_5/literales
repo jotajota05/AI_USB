@@ -1,0 +1,33 @@
+Constantes:
+
+- Mesa
+- Bloques: A, B, C, ...
+
+Estados:
+
+- on(X,Y) = el objeto X esta sobre el objeto Y
+
+- clear(X) = el objeto X esta libre
+
+- on_table(X) = el objeto X esta en la mesa
+
+
+Acciones:
+
+- move_from_table(X,Y) = mover X, que esta sobre la mesa, sobre Y que esta libre.
+
+  Pre: clear(X) , clear(Y) , X!=Y , on_table(X)
+
+  Effect: !clear(Y) , on(X,Y) , !on_table(X)
+
+- move_to_table(X,Y) = mover el bloque X, que esta sobre Y, a la mesa
+
+  Pre: clear(X) , on(X,Y)
+
+  Effect: clear(Y) , on_table(X) , !on(X,Y)
+
+- move(X,Y,Z) = mover el bloque X, que esta sobre el bloque Y, a encima del bloque Z
+
+  Pre: on(X,Y) , clear(X) , clear(Z) , X!=Y , X!=Z , Z!=Y , Z!=Mesa
+
+  Effect: clear(Y) , !clear(Z) , on(X,Z) , !on(X,Y)

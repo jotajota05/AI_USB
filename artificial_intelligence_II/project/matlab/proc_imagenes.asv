@@ -1,0 +1,9 @@
+function = proc_im(i, nombre_e, nombre_s)
+load transformaciones.txt;
+
+lineas = 242;
+  
+I = imread(nombre_e);
+tform = maketform('affine', [transformaciones(i,1) transformaciones(i,2) transformaciones(i,3); -transformaciones(i,2) transformaciones(i,1) transformaciones(i,4); 0 0 1]);
+I_T = imtransform(I,tform);
+imwrite(I_T, nombre_s);

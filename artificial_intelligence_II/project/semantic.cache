@@ -1,0 +1,15 @@
+;; Object proy/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "proy/"
+  :tables (list 
+   (semanticdb-table "FileRead.java"
+    :major-mode 'jde-mode
+    :tags '(("java.io.*" include nil nil [1 18]) ("FileRead" type (:members (("main" function (:typemodifiers ("public" "static") :arguments (("args" variable (:dereference 1 :type "String") (reparse-symbol formal_parameters) [64 77])) :type "void") (reparse-symbol class_member_declaration) [40 740])) :type "class") nil [19 742]))
+    :file "FileRead.java"
+    :pointmax 742
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre4"
+  :semanticdb-version "2.0pre4"
+  )

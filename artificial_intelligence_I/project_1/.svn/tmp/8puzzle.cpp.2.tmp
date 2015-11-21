@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
+//#include "camino.cpp"
+#include "estado.cpp"
+
+using namespace std;
+
+//Variable Global: Lista de caminos abiertos!!
+//Variable Global: Lista de estados hallados!!!
+
+<<<<<<< .mine
+void caminos_suc (Camino camino_actual){
+  if (camino_actual.ult_nodo.pos_cero[0]=='0'){
+    //hacer nuevo camino con movimiento DOWN.
+	char* new_camino = camino_actual.acciones;
+	Camino new_path()
+  }else if (camino_actual.ult_nodo.pos_cero[0]=='1'){
+    //hacer nuevo camino con movimiento UP
+    //hacer nuevo camino con movimiento DOWN
+  }else if (camino_actual.ult_nodo.pos_cero[0]=='2'){
+    //hacer nuevo camino con movimiento UP
+  }
+
+  if (camino_actual.ult_nodo.pos_cero[1]=='0'){
+    //hacer nuevo camino con movimiento RIGHT
+  }else if (camino_actual.ult_nodo.pos_cero[1]=='1'){
+    //hacer nuevo camino con movimiento RIGHT
+    //hacer nuevo camino con movimiento LEFT
+  }else if (camino_actual.ult_nodo.pos_cero[1]=='2'){
+    //hacer nuevo camino con movimiento LEFT
+  }
+}
+
+=======
+>>>>>>> .r7
+int main(int argc, char ** argv){
+  char * info_nodo;
+  if (argc!=11) {
+    cout<<'\n'<<"Uso: ./8puzzle <nombre_algoritmo> <numeros [0,8] separados por ' '>"<<'\n';
+    exit(0);
+  }else {
+    info_nodo=argv[2];
+    int i;
+    for(i=3;i<11;i++) {
+      if (strcmp(argv[i],"1")&&strcmp(argv[i],"2")&&strcmp(argv[i],"3")&&
+	  strcmp(argv[i],"4")&&strcmp(argv[i],"5")&&strcmp(argv[i],"6")&&
+	  strcmp(argv[i],"7")&&strcmp(argv[i],"8")&&strcmp(argv[i],"0"))
+	{
+	  cout<<'\n'<<"Uso: ./8puzzle <nombre_algoritmo> <numeros [0,8] separados por ' '>"<<'\n';
+	  exit(0);
+	}
+      else strcat(info_nodo,argv[i]);
+    }
+  }
+  Estado nodo_inicial(info_nodo);
+  nodo_inicial.print();
+  return 1;
+}
+

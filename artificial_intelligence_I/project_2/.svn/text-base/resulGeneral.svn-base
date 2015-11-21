@@ -1,0 +1,210 @@
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: -0.7196176890 0.9488486480 -0.8305168003 0.3993694605 0.9699775502 0.3905576011 0.8082212787 0.6163444463 0.2140575917 -0.7791516893 
+Evaluacion Nodo Inicial: -64.9654587163
+
+
+Ubicacion del Maximo:  -0.4796176890 0.9488486480 -0.1235168003 -0.8346305395 -0.3660224498 -0.9424423989 0.4632212787 -0.1776555537 -0.4029424083 -0.1621516893 
+Maximo - Hill Climbing = 6.9687378199
+Numero de llamadas a la funcion objetivo = 1590
+Tiempo de ejecucion Hill-Clibing: 0.002943 segundo(s)
+
+Ubicacion del Maximo:  -0.6656176890 0.9538486480 -0.2675168003 -0.3936305395 -0.7450224498 -0.6574423989 0.5042212787 0.0013444463 -0.3179424083 -0.1911516893 
+Maximo - Simulated Anneling = 8.1505542777
+Numero de llamadas a la funcion objetivo = 12690
+Tiempo de ejecucion Simulated-Anneling: 6.985209 segundo(s)
+
+
+Ubicacion del Maximo:  -0.5818730759 0.8468172098 -0.4058236201 -0.7244537605 -0.6702923070 -0.6937570574 0.3841428580 -0.2394496306 -0.5547027583 -0.1509852580 
+Maximo - Algoritmo Genetico = 9.4139641742
+Numero de llamadas a la funcion objetivo = 804417
+Tiempo de ejecucion Alg-Genetico: 1.384544 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: -0.6613467317 -0.9234021595 -0.5535204764 -0.0614103908 -0.0499024289 -0.2044155151 0.3725965992 0.8553526001 0.6562824417 0.8537862133 
+Evaluacion Nodo Inicial: -80.7693127463
+
+
+Ubicacion del Maximo:  -0.4773467317 0.7985978405 -0.1275204764 -0.6394103908 -0.6279024289 -0.6844155151 0.4445965992 0.0033526001 -0.4827175583 -0.3022137867 
+Maximo - Hill Climbing = 8.9083948929
+Numero de llamadas a la funcion objetivo = 1754
+Tiempo de ejecucion Hill-Clibing: 0.003181 segundo(s)
+
+Ubicacion del Maximo:  -0.4813467317 1.0235978405 -0.2895204764 -0.6324103908 -0.5969024289 -0.8054155151 0.3575965992 -0.2846473999 -0.4977175583 -0.2622137867 
+Maximo - Simulated Anneling = 9.3175841950
+Numero de llamadas a la funcion objetivo = 12606
+Tiempo de ejecucion Simulated-Anneling: 7.226328 segundo(s)
+
+
+Ubicacion del Maximo:  -0.6791520697 0.7629460933 -0.2759909657 -0.5548553174 -0.7315386188 -0.7240322881 0.2348588201 -0.1843147276 -0.2485413866 -0.2473562660 
+Maximo - Algoritmo Genetico = 8.5128706149
+Numero de llamadas a la funcion objetivo = 604268
+Tiempo de ejecucion Alg-Genetico: 1.050737 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: 0.8203042001 0.8062803484 0.9444878055 0.5581173263 0.3044320606 -0.1733766953 -0.6406181687 -0.0701812431 0.4437206080 0.1359425001 
+Evaluacion Nodo Inicial: -80.5575033433
+
+
+Ubicacion del Maximo:  -0.6046957999 0.8062803484 -0.1445121945 -0.6768826737 -0.4575679394 -0.8703766953 0.2333818313 -0.0701812431 -0.5852793920 -0.1260574999 
+Maximo - Hill Climbing = 7.8842725346
+Numero de llamadas a la funcion objetivo = 1699
+Tiempo de ejecucion Hill-Clibing: 0.003125 segundo(s)
+
+Ubicacion del Maximo:  -0.6016957999 0.8192803484 -0.3805121945 -0.6848826737 -0.6925679394 -0.7493766953 0.1573818313 -0.1051812431 -0.3482793920 -0.1790574999 
+Maximo - Simulated Anneling = 8.8546060098
+Numero de llamadas a la funcion objetivo = 12646
+Tiempo de ejecucion Simulated-Anneling: 7.177688 segundo(s)
+
+
+Ubicacion del Maximo:  -0.4875292965 0.8627940961 -0.2956778511 -0.4339760569 -0.5909733140 -0.4593603467 0.4091153203 -0.2057270596 -0.3777882997 -0.3016927987 
+Maximo - Algoritmo Genetico = 8.1774647180
+Numero de llamadas a la funcion objetivo = 498637
+Tiempo de ejecucion Alg-Genetico: 0.858765 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: 0.6911710305 -0.5768425940 0.0114362240 -0.5063920543 -0.3652707571 -0.5941425385 -0.8644978069 -0.0581602501 0.4338244554 -0.2119222041 
+Evaluacion Nodo Inicial: -59.9251454958
+
+
+Ubicacion del Maximo:  -0.4998289695 0.8221574060 -0.0265637760 -0.7513920543 -0.7892707571 -0.5941425385 0.2835021931 -0.0581602501 -0.4471755446 -0.0729222041 
+Maximo - Hill Climbing = 7.8886679879
+Numero de llamadas a la funcion objetivo = 1797
+Tiempo de ejecucion Hill-Clibing: 0.003298 segundo(s)
+
+Ubicacion del Maximo:  -0.5148289695 1.0351574060 -0.3215637760 -0.4703920543 -0.6472707571 -0.5981425385 0.1575021931 -0.2641602501 -0.5751755446 -0.2429222041 
+Maximo - Simulated Anneling = 8.4799531436
+Numero de llamadas a la funcion objetivo = 12635
+Tiempo de ejecucion Simulated-Anneling: 7.158969 segundo(s)
+
+
+Ubicacion del Maximo:  -0.5472780518 0.8237878367 -0.2728249898 -0.5356408879 -0.7154292192 -0.6804550122 0.2089991123 -0.0568457727 -0.5028642369 -0.2803902527 
+Maximo - Algoritmo Genetico = 9.0908592931
+Numero de llamadas a la funcion objetivo = 485912
+Tiempo de ejecucion Alg-Genetico: 0.841761 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: -0.7370794266 0.4622105611 0.4918730436 0.8085454181 0.6804852374 0.1527334778 -0.6755190007 0.9100652048 0.8537243810 -0.5295068305 
+Evaluacion Nodo Inicial: -91.4622268170
+
+
+Ubicacion del Maximo:  -0.7310794266 0.7682105611 -0.3361269564 -0.8094545819 -0.5855147626 -0.9312665222 0.0944809993 -0.1739347952 -0.4132756190 0.0254931695 
+Maximo - Hill Climbing = 6.8679439271
+Numero de llamadas a la funcion objetivo = 1728
+Tiempo de ejecucion Hill-Clibing: 0.003148 segundo(s)
+
+Ubicacion del Maximo:  -0.7040794266 0.9022105611 -0.4451269564 -0.7644545819 -0.7095147626 -0.7512665222 0.5194809993 -0.2809347952 -0.5942756190 -0.2165068305 
+Maximo - Simulated Anneling = 8.5315523203
+Numero de llamadas a la funcion objetivo = 12615
+Tiempo de ejecucion Simulated-Anneling: 6.927036 segundo(s)
+
+
+Ubicacion del Maximo:  -0.3997879735 0.7107261942 -0.2462601509 -0.5330079398 -0.6906120088 -0.6458588980 0.2812134817 -0.1602219059 -0.4528218484 -0.2135171924 
+Maximo - Algoritmo Genetico = 8.7620505240
+Numero de llamadas a la funcion objetivo = 890368
+Tiempo de ejecucion Alg-Genetico: 1.532739 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: 0.7994934181 0.8335453840 -0.3131319573 0.0076344050 -0.4554165658 -0.3696940737 0.6739058057 -0.7474630000 0.8886444345 0.1126483101 
+Evaluacion Nodo Inicial: -53.0455777780
+
+
+Ubicacion del Maximo:  -0.8755065819 0.8335453840 -0.5491319573 -0.7533655950 -0.7254165658 -0.8346940737 0.6159058057 -0.1044630000 -0.1873555655 -0.1233516899 
+Maximo - Hill Climbing = 6.2692293444
+Numero de llamadas a la funcion objetivo = 1743
+Tiempo de ejecucion Hill-Clibing: 0.003165 segundo(s)
+
+Ubicacion del Maximo:  -0.6815065819 0.9315453840 -0.1611319573 -0.6303655950 -0.6524165658 -0.8846940737 0.5109058057 -0.2174630000 -0.4443555655 -0.3323516899 
+Maximo - Simulated Anneling = 8.6529836219
+Numero de llamadas a la funcion objetivo = 12606
+Tiempo de ejecucion Simulated-Anneling: 6.964069 segundo(s)
+
+
+Ubicacion del Maximo:  -0.6442030659 0.7473030716 -0.3145488821 -0.5923983738 -0.6493452683 -0.6000049668 0.3389176361 -0.0977505187 -0.4560999701 -0.0793173536 
+Maximo - Algoritmo Genetico = 9.0787495738
+Numero de llamadas a la funcion objetivo = 758387
+Tiempo de ejecucion Alg-Genetico: 1.323162 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: -0.4320896799 0.2760752458 -0.9972047526 -0.7624696903 0.3815964647 -0.1668995554 -0.3794067875 0.2429985991 -0.6204146752 0.9964469094 
+Evaluacion Nodo Inicial: -42.6495641625
+
+
+Ubicacion del Maximo:  -0.4320896799 0.8200752458 -0.2742047526 -0.7624696903 -0.6594035353 -0.7538995554 0.3435932125 0.1069985991 -0.6164146752 -0.2545530906 
+Maximo - Hill Climbing = 8.3503819796
+Numero de llamadas a la funcion objetivo = 1642
+Tiempo de ejecucion Hill-Clibing: 0.003013 segundo(s)
+
+Ubicacion del Maximo:  -0.6800896799 1.0120752458 -0.1962047526 -0.7044696903 -0.5804035353 -0.6388995554 0.3955932125 -0.0250014009 -0.4254146752 -0.2745530906 
+Maximo - Simulated Anneling = 9.0323196796
+Numero de llamadas a la funcion objetivo = 12626
+Tiempo de ejecucion Simulated-Anneling: 7.198755 segundo(s)
+
+
+Ubicacion del Maximo:  -0.7491708076 0.7475720867 -0.2272491672 -0.5064326558 -0.6872945243 -0.6772347818 0.3943241011 -0.1759813751 -0.4926904291 -0.4077441008 
+Maximo - Algoritmo Genetico = 8.6594266648
+Numero de llamadas a la funcion objetivo = 721937
+Tiempo de ejecucion Alg-Genetico: 1.231416 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: 0.6613469357 -0.0970614068 0.1789718485 0.2683218233 0.5752939004 0.8207614524 -0.7730673561 -0.9955716683 -0.5939825783 -0.5985543914 
+Evaluacion Nodo Inicial: -95.4398857510
+
+
+Ubicacion del Maximo:  -0.2896530643 0.7569385932 -0.0740281515 -0.4846781767 -0.5347060996 -0.7852385476 0.2309326439 -0.3005716683 -0.7079825783 -0.0495543914 
+Maximo - Hill Climbing = 5.6938730362
+Numero de llamadas a la funcion objetivo = 1852
+Tiempo de ejecucion Hill-Clibing: 0.003689 segundo(s)
+
+Ubicacion del Maximo:  -0.4566530643 1.1179385932 -0.3520281515 -0.7106781767 -0.7867060996 -0.5042385476 0.2469326439 -0.3785716683 -0.4569825783 -0.3245543914 
+Maximo - Simulated Anneling = 7.9635438209
+Numero de llamadas a la funcion objetivo = 12591
+Tiempo de ejecucion Simulated-Anneling: 7.022854 segundo(s)
+
+
+Ubicacion del Maximo:  -0.6678033939 0.7515633936 -0.3632146806 -0.5872939429 -0.7061728775 -0.7088346274 0.3270227997 -0.2132822859 -0.5720885393 -0.0517557611 
+Maximo - Algoritmo Genetico = 8.6441770183
+Numero de llamadas a la funcion objetivo = 752525
+Tiempo de ejecucion Alg-Genetico: 1.310659 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: 0.0013836250 0.0502566081 -0.5401353668 -0.5368154300 -0.5027392032 0.4638184849 -0.2483521439 0.9354613628 0.8328070734 -0.4043628369 
+Evaluacion Nodo Inicial: -61.9736280419
+
+
+Ubicacion del Maximo:  -0.5616163750 0.7472566081 -0.3061353668 -0.5368154300 -0.5627392032 -0.3711815151 0.3856478561 -0.0285386372 -0.5591929266 -0.0883628369 
+Maximo - Hill Climbing = 7.5592979903
+Numero de llamadas a la funcion objetivo = 1765
+Tiempo de ejecucion Hill-Clibing: 0.003201 segundo(s)
+
+Ubicacion del Maximo:  -0.4306163750 0.7902566081 -0.0291353668 -0.7358154300 -0.7047392032 -0.8031815151 0.3156478561 -0.0835386372 -0.5571929266 -0.2693628369 
+Maximo - Simulated Anneling = 8.5808044620
+Numero de llamadas a la funcion objetivo = 12619
+Tiempo de ejecucion Simulated-Anneling: 7.208648 segundo(s)
+
+
+Ubicacion del Maximo:  -0.4873111178 0.7496045119 -0.1929363851 -0.6437621038 -0.6057485702 -0.4554009575 0.4367965529 -0.2329358970 -0.5557553736 -0.2071860016 
+Maximo - Algoritmo Genetico = 8.5426273484
+Numero de llamadas a la funcion objetivo = 670172
+Tiempo de ejecucion Alg-Genetico: 1.159218 segundo(s)
+
+
+Ubicacion del Inicial para Hill-Climbing y Simulated-Anneling: 0.6117469231 -0.5767749660 0.3991874596 -0.5078483475 0.0048967162 0.2666003499 -0.3126632757 -0.4908580873 0.5266364487 -0.4897085913 
+Evaluacion Nodo Inicial: -74.1833062480
+
+
+Ubicacion del Maximo:  -0.7592530769 0.6912250340 -0.0808125404 -0.5078483475 -0.5711032838 -0.5833996501 0.1513367243 -0.2878580873 -0.3233635513 -0.4897085913 
+Maximo - Hill Climbing = 6.3792541782
+Numero de llamadas a la funcion objetivo = 1749
+Tiempo de ejecucion Hill-Clibing: 0.003153 segundo(s)
+
+Ubicacion del Maximo:  -0.5222530769 0.9912250340 -0.0428125404 -0.4178483475 -0.6721032838 -0.6953996501 0.3113367243 0.0321419127 -0.5893635513 -0.4587085913 
+Maximo - Simulated Anneling = 7.7291916878
+Numero de llamadas a la funcion objetivo = 12636
+Tiempo de ejecucion Simulated-Anneling: 7.530745 segundo(s)
+
+
+Ubicacion del Maximo:  -0.5933689565 0.7710142505 -0.1757565248 -0.4637889329 -0.6383695781 -0.6998144694 0.2320219176 -0.3719697890 -0.4656536746 -0.0595135139 
+Maximo - Algoritmo Genetico = 8.1759499339
+Numero de llamadas a la funcion objetivo = 706652
+Tiempo de ejecucion Alg-Genetico: 1.231819 segundo(s)
+

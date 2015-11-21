@@ -1,0 +1,103 @@
+#include <iostream>
+#include <string.h>
+<<<<<<< .mine
+#include <list>
+=======
+#include <stdio.h>
+#include <list>
+>>>>>>> .r7
+#include "estado.cpp"
+
+using namespace std;
+
+class Camino{
+public:
+  Estado ult_nodo;
+  char* acciones;
+  int costo;
+  Camino(Estado ult_nodo, char* acciones, int costo);
+  void print();
+  void insert_accion(char new_accion);
+  list<Camino> sucesores();
+};
+
+Camino::Camino(Estado info_nodo, char* info_acciones, int info_costo){
+  acciones = info_acciones;
+  ult_nodo = info_nodo;
+  costo=info_costo;
+}
+
+void Camino::print(){
+  int i;
+  int j=strlen(acciones);
+  for(i=0;i<j;i++){
+  	if (*acciones=='u') cout<<" UP ";
+	else if (*acciones=='d') cout<<" DOWN ";
+	else if (*acciones=='l') cout<<" LEFT ";
+	else if (*acciones=='r') cout<<" RIGHT ";
+	acciones++;
+  }
+  cout<<'\n';
+}
+
+void Camino::insert_accion(char accion){
+  strcat(acciones,(char*)&accion);
+}
+
+list<Camino> Camino::sucesores(){
+  list<Camino> sucesores;
+  if (ult_nodo.pos_cero[0]=='0'){
+	//Se crea un nuevo estado igual al estado actual
+	Estado estado_suc = ult_nodo.clon();
+	short int num1[2],num2[2];
+  	num1[0]=0;
+  	num1[1]=atoi(&ult_nodo.pos_cero[1]);
+  	num2[0]=1;
+  	num2[1]= num1[1];
+	//Se intercambian las posiciones de 2 numeros en el nuevo estado tal 
+	//se represente la accion DOWN
+	estado_suc.swap(num1,num2);
+	estado_suc.print();
+	//Chequear si el estado ya estaba creado
+	//Si no, hacer nuevo camino con movimiento DOWN.
+	cout<<acciones<<'\n';
+	char* nueva_accion;
+	strcpy(nueva_accion,acciones);
+	cout<<nueva_accion<<'\n';
+	strcat(nueva_accion,"d");
+	Camino camino_nuevo(estado_suc,nueva_accion,costo);
+	camino_nuevo.print();
+	sucesores.push_back(camino_nuevo);
+  }/**else if (ult_nodo.pos_cero[0]=='1'){
+	//hacer nuevo camino con movimiento UP
+	//hacer nuevo camino con movimiento DOWN
+  }else if (ult_nodo.pos_cero[0]=='2'){
+  	//hacer nuevo camino con movimiento UP
+  }
+  if (ult_nodo.pos_cero[1]=='0'){
+  	//hacer nuevo camino con movimiento RIGHT
+  }else if (ult_nodo.pos_cero[1]=='1'){
+  	//hacer nuevo camino con movimiento RIGHT
+	//hacer nuevo camino con movimiento LEFT
+  }else if (ult_nodo.pos_cero[1]=='2'){
+  	//hacer nuevo camino con movimiento LEFT
+  }*/
+  return sucesores;
+}
+
+
+int main(){
+  char datos[]= "023456781";
+  char accion_hecha[] = "udrul";
+  int costo = 0; 
+  Estado nodo(datos);
+  Camino camino1(nodo,accion_hecha,costo);
+  cout<<accion_hecha<<'\n';
+  camino1.print();
+  camino1.ult_nodo.print();
+  cout<<'\n';
+  list<Camino> sucesores = camino1.sucesores();
+  sucesores.front().print();
+  return 1;
+}
+

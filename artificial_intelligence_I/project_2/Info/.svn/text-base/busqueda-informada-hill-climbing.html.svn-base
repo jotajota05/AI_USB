@@ -1,0 +1,778 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:expr="http://www.google.com/2005/gml/expr" xmlns:data="http://www.google.com/2005/gml/data" xmlns:b="http://www.google.com/2005/gml/b" xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+<script type="text/javascript">(function() { var a=window;function d(b){this.t={};this.tick=function(c,h,e){var i=e?e:(new Date).getTime();this.t[c]=[i,h]};this.tick("start",null,b)}var f=new d;a.jstiming={Timer:d,load:f};try{a.jstiming.pt=a.external.pageT}catch(g){};function j(b){var c=0;if(b.offsetParent){do c+=b.offsetTop;while(b=b.offsetParent)}return c}a.tickAboveFold=function(b){j(b)<=750&&a.jstiming.load.tick("aft")};var k=false;function l(){if(!k){k=true;a.jstiming.load.tick("firstScrollTime")}}a.addEventListener?a.addEventListener("scroll",l,false):a.attachEvent("onscroll",l); })();</script>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="true" name="MSSmartTagsPreventParsing">
+<meta content="blogger" name="generator">
+<link href="http://www.blogger.com/favicon.ico" rel="icon" type="image/vnd.microsoft.icon">
+<link rel="alternate" type="application/atom+xml" title="INTELIGENCIA ARTIFICIAL - Atom" href="http://velasquez-berru.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="INTELIGENCIA ARTIFICIAL - RSS" href="http://velasquez-berru.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="INTELIGENCIA ARTIFICIAL - Atom" href="http://www.blogger.com/feeds/2386704658709125175/posts/default">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.blogger.com/rsd.g?blogID=2386704658709125175">
+<link rel="alternate" type="application/atom+xml" title="INTELIGENCIA ARTIFICIAL - Atom" href="http://velasquez-berru.blogspot.com/feeds/2723038726081483964/comments/default">
+<title>INTELIGENCIA ARTIFICIAL: Busqueda Local: Hill-Climbing</title>
+<style id="page-skin-1" type="text/css"><!--
+/*
+/* **************************
+Name: Blogy iPlantilla
+Blogger by: http://Blogandweb.com
+Designer: NDesign Studios
+Date: Apl 07
+Icons: NDesign Studios
+*****************************
+*//*  Definición de variables
+====================
+<Variable name="bgcolor" description="Color de fondo del blog"
+type="color" default="#42afdc">
+<Variable name="textocolor" description="Color general del texto"
+type="color" default="#333333">
+<Variable name="enlacecolor" description="Color de los enlaces (links)"
+type="color" default="#44a1d0">
+<Variable name="colortituloblog" description="Color del título del blog"
+type="color" default="#FFFFFF">
+<Variable name="descripcioncolor" description="Color de la descripción del blog"
+type="color" default="#000000">
+<Variable name="colortituloentrada" description="Color del título de las entradas"
+type="color" default="#44a1d0">
+<Variable name="colortituloslateral" description="Color de los títulos en la barra lateral"
+type="color" default="#666666">
+*/
+#outer-wrapper {
+background: url(http://bp1.blogger.com/_Zuzii37VUO4/RkOth-MBSlI/AAAAAAAAA7E/aVmcjKJVwPA/s1600/fondo-blogy.jpg) no-repeat center top;
+}
+#navbar-iframe {
+height:0px;
+visibility:hidden;
+display:none
+}
+.clear {
+clear:both;
+}
+/*-- (Genrales) --*/
+body {
+background: #42afdc url(http://img258.imageshack.us/img258/8179/htmlbgcv1.gif) repeat-x;
+font: 75%/170% Arial, Helvetica, sans-serif;
+padding: 0px;
+margin: 0px;
+color: #333333;
+}
+a {
+color: #44a1d0;
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+p {
+margin: 0px 0px 15px;
+}
+img {
+border: none;
+}
+ul {
+margin: 5px 0px 15px;
+padding-left: 20px;
+}
+ul li {
+margin: 0px;
+}
+ol {
+margin: 5px 0px 15px;
+padding-left: 20px;
+}
+ul li {
+margin: 0px;
+}
+form {
+margin: 0px;
+padding: 0px;
+}
+small {
+font-size: 90%;
+}
+#main-wrapper {overflow:hidden;}
+.clear {clear:both;}
+#blog-pager-newer-link {float: left;}
+#blog-pager-older-link {float: right;}
+#blog-pager {text-align: center; }
+/*-- (Cabecera) --*/
+#header-wrapper {
+height: 120px;
+}
+#header-wrapper h1 {
+position: absolute;
+top: 40px;
+left: 25px;
+color: #FFFFFF;
+margin: 0px;
+padding: 0px;
+font: normal 30px/100% "Trebuchet MS", Arial, sans-serif;
+}
+#header-wrapper h1 a,
+#header-wrapper h1 a:visited {
+color: #FFFFFF;
+text-decoration: none;
+}
+#header-wrapper h1 a:hover {
+color: #000000;
+text-decoration: none;
+}
+#header-wrapper p {
+position: absolute;
+top: 77px;
+left: 25px;
+color: #000000;
+font: 12px Arial, Helvetica, sans-serif;
+}
+#content-wrapper {
+width: 770px;
+margin: 0px auto;
+position: relative;
+}
+#searchform {
+position: absolute;
+top: 0px;
+right: 0px;
+background: url(http://bp3.blogger.com/_Zuzii37VUO4/RrbkSaYSU6I/AAAAAAAAB_I/95mDHZqyCdg/s1600/searchform-bg.png) no-repeat right bottom;
+height: 37px;
+width: 210px;
+}
+#searchform #s{
+background: #ffffff url(http://bp0.blogger.com/_Zuzii37VUO4/RrbkSqYSU8I/AAAAAAAAB_Y/YiD-DhjJQ50/s1600/form-field-bg.gif) no-repeat ;
+height: 17px;
+width: 148px;
+margin: 6px 5px 0px 10px;
+padding: 3px 7px 2px 5px;
+color: #999999;
+border: none;
+}
+#searchform #searchsubmit {
+background: url(http://img264.imageshack.us/img264/4374/searchbtnnk7.png) no-repeat left top;
+height: 24px;
+width: 24px;
+border: none;
+text-indent: -999%;
+line-height: 1px;
+margin-top: 6px;
+}
+/*-- (Menú) --*/
+#nav {
+background: url(http://bp0.blogger.com/_Zuzii37VUO4/RkSi-eMBS9I/AAAAAAAAA98/FjN3agWJAKg/s1600/content-top-bg.png) no-repeat left top;
+height: 26px;
+}
+#nav ul{
+list-style: none;
+margin: 0px 0px 0px 25px;
+padding: 0px;
+font: bold 12px/100% Arial, Helvetica, sans-serif;
+}
+#nav ul li{
+margin: 0px 1px 0px 0px;
+padding: 0px;
+float: left;
+}
+#nav ul li a{
+padding: 5px 7px 6px 7px;
+text-decoration: none;
+color: #000000;
+display: block;
+}
+#nav li a:visited{
+text-decoration: none;
+color: #000000;
+}
+#nav li a:hover, #nav .current_page_item a{
+text-decoration: none;
+background: #2e91c6 url(http://bp2.blogger.com/_Zuzii37VUO4/RkSlJ-MBTUI/AAAAAAAABA0/8jU_kzLyksw/s1600/nav-item-hover.gif) repeat-x;
+color: #ffffff;
+}
+/*-- (Principal) --*/
+#main-wrapper {
+width: 545px;
+float: left;
+margin-top: 11px;
+overflow:hidden;
+}
+#Blog1 {
+padding: 25px 15px 15px 15px;
+background: #ffffff;
+overflow: hidden;
+}
+#main-wrapper a {
+}
+#main-wrapper a:hover {
+}
+.post {
+padding: 0px 0px 10px 40px;
+background: url() no-repeat;
+clear: ;
+overflow: hidden;
+}
+.post-title {
+color: #333333;
+margin: 0px;
+padding-bottom: 4px;
+font: normal 150%/100% "Lucida Grande", Arial, sans-serif;
+border-bottom: dotted 1px #CCCCCC;
+}
+.post-title a, .post-title a:visited {
+color: #333333;
+text-decoration: none;
+}
+.post-title a:hover {
+color: #44a1d0;
+text-decoration: none;
+}
+.post-body {
+padding: 10px 0px 5px;
+clear: both;
+}
+.post-footer p {
+margin:0;
+}
+date-header {
+color: #666666;
+margin: 5px 0px 5px;
+font: bold 90%/90% "Lucida Grande", Arial, sans-serif;
+padding-left:20px;
+padding-top:5px;
+background:transparent url(http://bp1.blogger.com/_Zuzii37VUO4/RkSi-uMBS_I/AAAAAAAAA-M/WLdTl0_Ir0g/s1600/mini-archive.gif) center left no-repeat;
+}
+#fecha {
+height: 50px;
+width: 45px;
+background: url(http://bp0.blogger.com/_Zuzii37VUO4/RrbqHqYSU-I/AAAAAAAAB_o/2Umze8tT6vc/s1600/calendar.gif.jpg) no-repeat;
+font: normal 22px Arial, Helvetica, sans-serif;
+color: #666666;
+text-align: center;
+padding: 0px 2px 0 0;
+line-height: 100%;
+float: left;
+}
+.fecha_mes {
+height: 16px;
+display: block;
+font: normal 11px Arial, Helvetica, sans-serif;
+color: #ffffff;
+text-align: center;
+padding-top: 5px;
+}
+.post-footer {
+font-size: 90%;
+color: #999999;
+}
+#blog-pager {
+clear: both;
+background: url(http://bp2.blogger.com/_Zuzii37VUO4/RkSlJ-MBTRI/AAAAAAAABAc/aDlUMqjwPrQ/s1600/navigation-bg.gif) no-repeat left center;
+height: 21px;
+}
+#blog-pager a, .page-nav a:visited {
+color: #ffffff;
+text-decoration: none;
+}
+#blog-pager a:hover {
+color: #000000;
+text-decoration: none;
+}
+#blog-pager-older-link a {
+padding-right: 10px;
+margin-right: 10px;
+background: url(http://bp2.blogger.com/_Zuzii37VUO4/RkSlJ-MBTTI/AAAAAAAABAs/1DMkvZqP19Y/s1600/navigation-right.gif) no-repeat right center;
+}
+#blog-pager-newer-link a {
+padding-left: 10px;
+margin-left: 10px;
+background: url(http://bp2.blogger.com/_Zuzii37VUO4/RkSlJ-MBTSI/AAAAAAAABAk/3im0L0MvNoo/s1600/navigation-left.gif) no-repeat left center;
+}
+a.home-link {
+}
+/*-- (Lateral) --*/
+#sidebar-wrapper {
+float:right;
+width: 210px;
+color: #666666;
+line-height: 160%;
+padding:11px 0 0 0;
+}
+.sidebar .widget {
+padding:0pt 0px 10px;
+width:210px;
+}
+#sidebar-wrapper h2 {
+background:transparent url(http://bp3.blogger.com/_Zuzii37VUO4/RkTUtOMBThI/AAAAAAAABCc/I-BDP9L70Nc/s1600/sidebar.png) no-repeat scroll 0pt;
+margin:0pt;
+padding:5px 24px 7px 10px;
+color: #666666;
+font: bold 110%/110% "Lucida Grande", Arial, sans-serif;
+}
+.widget-content {
+background:transparent url(http://bp1.blogger.com/_Zuzii37VUO4/RkSleuMBTbI/AAAAAAAABBs/-CR7zrUR9yo/s1600/sidep-bottom.png) repeat-y bottom left;
+margin:0pt;
+overflow:hidden;
+padding:5px 10px 9px;
+}
+#sidebar-wrapper ul{
+list-style: none;
+}
+#sidebar-wrapper li{
+background: url(http://bp1.blogger.com/_Zuzii37VUO4/RkSipuMBS1I/AAAAAAAAA88/a31_DYZq8Ro/s1600/bullet-grey.gif) no-repeat;
+padding-left: 12px ;
+}
+/*-- (Pie de página) --*/
+#footer-wrapper {
+background: url(http://bp2.blogger.com/_Zuzii37VUO4/RkSip-MBS4I/AAAAAAAAA9U/6X0qzZeiYYU/s1600/content-bottom-bg.png) no-repeat;
+padding: 10px 0px 0px 10px;
+font-size: 87%;
+color: #282828;
+}
+#footer-wrapper a, #footer a:visited {
+text-decoration: none;
+color: #000000;
+}
+#footer-wrapper a:hover {
+text-decoration: underline;
+}
+/*-- (Iconos)-- */
+.post-labels {
+padding-left:20px;
+padding-top:5px;
+background:transparent url(http://bp1.blogger.com/_Zuzii37VUO4/RkSkzuMBTCI/AAAAAAAAA-k/bpYp3R6BRGI/s1600/mini-category.gif) center left no-repeat;
+float:left;
+}
+.post-author {
+padding-left:20px;
+padding-top:5px;
+background: url(http://bp1.blogger.com/_Zuzii37VUO4/RkSlDuMBTNI/AAAAAAAAA_8/5deV6iGtWBo/s1600/mini-user.gif) center left no-repeat;
+}
+.comment-link {
+padding-left:20px;
+padding-top:5px;
+background: url(http://bp2.blogger.com/_Zuzii37VUO4/RkSkz-MBTGI/AAAAAAAAA_E/NGVgKANhdRw/s1600/mini-comment.gif) center left no-repeat;
+float:right;
+}
+#sidebar-wrapper #LinkList1 li, #sidebar-wrapper #LinkList2 li {
+padding-left:20px;
+padding-top:5px;
+background: url(http://bp1.blogger.com/_Zuzii37VUO4/RkSi-uMBTBI/AAAAAAAAA-c/9oikjzACtwI/s1600/mini-blogroll.gif) center left no-repeat;
+}
+#sidebar-wrapper #TextList1 li, #sidebar-wrapper #TextList2 li {
+padding-left:20px;
+padding-top:5px;
+background: url(http://bp1.blogger.com/_Zuzii37VUO4/RkSipuMBS2I/AAAAAAAAA9E/eLW2x1BGVE4/s1600/bullet-orange.gif) center left no-repeat;
+}
+#sidebar-wrapper .toggle {
+padding-left:20px;
+padding-top:5px;
+background: url(http://bp1.blogger.com/_Zuzii37VUO4/RkSi-uMBS_I/AAAAAAAAA-M/WLdTl0_Ir0g/s1600/mini-archive.gif) center left no-repeat;
+}
+.zippy {
+display:none;
+visibility:hidden;
+}
+#sidebar-wrapper #Label1 li,#sidebar-wrapper #Label2 li{
+padding-left:20px;
+padding-top:5px;
+background: url(http://bp1.blogger.com/_Zuzii37VUO4/RkSkzuMBTCI/AAAAAAAAA-k/bpYp3R6BRGI/s1600/mini-category.gif) center left no-repeat;
+}
+#sidebar-wrapper #Feed1 li, #sidebar-wrapper #Feed2 li{
+padding-left:20px;
+padding-top:5px;
+background: url(http://bp2.blogger.com/_Zuzii37VUO4/RkSk8-MBTLI/AAAAAAAAA_s/Nnu9FLi11zo/s1600/mini-rss.gif) center left no-repeat;
+}
+/*-- (Comentarios) --*/
+#comments h4 {
+background: url(http://img528.imageshack.us/img528/9321/commentsqt2.gif) no-repeat;
+padding-left: 22px;
+font: normal 140%/120% Arial, Helvetica, sans-serif;
+clear: both;
+margin-left:40px;
+}
+#comments dl {
+margin: 10px 0px;
+padding-left: 45px;
+line-height: 130%;
+}
+.comment-author {
+font-weight: bold;
+font-style: normal;
+font-size: 110%;
+color: #669900;
+}
+.comment-author a, .comment-author a:visited {
+color: #669900;
+}
+.comment-body {
+margin-left:0;
+padding-left:0;
+}
+.comment-footer {
+margin-left:0;
+padding-left:0;
+margin-bottom: 5px;
+display: block;
+font-size: 87%;
+}
+.comment-footer a,
+.comment-footer a:visited {
+color: #999999;
+}
+
+--></style>
+<link href="busqueda-informada-hill-climbing_files/estilos-blogger.css" rel="stylesheet" type="text/css">
+<link href="busqueda-informada-hill-climbing_files/blogy-iplantilla.css" rel="stylesheet" type="text/css">
+<script>
+function remplaza_fecha(d){
+var da = d.split(' ');
+dia = "<strong class='fecha_dia'>"+da[0]+"</strong>"; 
+mes = "<strong class='fecha_mes'>"+da[1].slice(0,3)+"</strong>"; 
+anio = "<strong class='fecha_anio'>"+da[2]+"</strong>";
+  document.write(mes+dia);
+}
+</script>
+<link type="text/css" rel="stylesheet" href="busqueda-informada-hill-climbing_files/2300090209-widget_css_bundle.css"> <link rel="stylesheet" type="text/css" href="busqueda-informada-hill-climbing_files/3727950723-blog_controls.css">
+ <link rel="stylesheet" type="text/css" href="busqueda-informada-hill-climbing_files/authorization.css">
+<style type="text/css">#navbar-iframe { display:block }
+</style>
+
+</head><body>
+<div class="navbar section" id="navbar"><div class="widget Navbar" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener("load",
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<iframe src="busqueda-informada-hill-climbing_files/navbar.g" marginwidth="0" marginheight="0" id="navbar-iframe" title="Blogger Navigation and Search" scrolling="no" frameborder="0" height="30" width="100%"></iframe>
+<div></div></div></div>
+<div id="outer-wrapper"><div id="wrap2">
+<!-- skip links for text browsers -->
+<span id="skiplinks" style="display: none;">
+<a href="#main">skip to main </a> |
+      <a href="#sidebar">skip to sidebar</a>
+</span>
+<div id="content-wrapper">
+<div id="header-wrapper">
+<div class="header section" id="header"><div class="widget Header" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="http://velasquez-berru.blogspot.com/">INTELIGENCIA ARTIFICIAL</a>
+</h1>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>
+</span></p>
+</div>
+</div>
+</div></div>
+<form action="/search" id="searchform" method="get">
+<div>
+<input id="s" name="q" onblur='if (this.value == "") {this.value = "Search";}' onfocus='if (this.value == "Search") {this.value = "";}' value="Buscar" type="text">
+<input id="searchsubmit" value="Go" type="submit">
+</div>
+</form>
+</div>
+<div id="crosscol-wrapper" style="text-align: center;">
+<div class="crosscol section" id="crosscol"></div>
+</div>
+<div id="main-wrapper">
+<div id="nav">
+<ul>
+<li class="page_item current_page_item"><a href="#" title="Inicio">Inicio</a></li>
+<li class="page_item"><a href="#" title="Perfil">Perfil</a></li>
+<li class="page_item"><a href="#" title="Blog">Blog</a></li>
+<li class="page_item"><a href="http://blogandweb.com/" title="Soporte">Soporte</a></li>
+</ul>
+</div>
+<div class="main section" id="main"><div class="widget Blog" id="Blog1">
+<div class="blog-posts">
+<!-- google_ad_section_start -->
+<div class="post uncustomized-post-template">
+<a name="2723038726081483964"></a>
+<div id="fecha">
+<script>remplaza_fecha('07 junio 2008');</script><strong class="fecha_mes">jun</strong><strong class="fecha_dia">07</strong>
+</div>
+<h3 class="post-title">
+<a href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html">Busqueda Local: Hill-Climbing</a>
+</h3>
+<span class="post-labels">
+Etiquetas:
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%203" rel="tag">Laboratorio 3</a>
+</span>
+<span class="post-comment-link">
+</span>
+<div class="post-header-line-1"></div>
+<div class="post-body">
+<p><span style="font-weight: bold;">Problema de TSP resuelto con Hill-Climbing</span><span style=""><br><span style="font-family: arial; font-size: 100%;">Esta técnica consiste en: dado un estado actual, elegir el mejor</span></span><span style=""><span style="font-family: arial; font-size: 100%;"> sucesor, si en caso existe más de uno elegir aleatoriamente.</span><br></span>  </p><div style="text-align: left; font-family: arial;">    </div><div style="text-align: left; font-family: arial;">  </div><span style="font-size: 100%;">El nodo de cada estado fue configurado de la siguiente manera:<br></span><br><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/__CDMsEjzZdU/SE8aE1C2M5I/AAAAAAAAAGo/vb4DjsAOsu8/s1600-h/e.JPG"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="busqueda-informada-hill-climbing_files/e_002.JPG" alt="" id="BLOGGER_PHOTO_ID_5210411964151772050" border="0"></a><span style="font-size: 100%;">El
+recorrido de cada estado esta dado por un arreglo de enteros, donde
+cada número representa el número de una ciudad, es decir si tenemos 5
+ciudades un posible recorrido sería:</span><br><span style="font-size: 100%;">Recorrido<span style="">  </span><span style="">--&gt;</span><span style="">   </span>(4 2 3 0 1)</span><div style="text-align: left; font-family: arial;">  </div><span style="font-size: 100%;">El costo o longitud de recorrido es la sum</span><span style="font-size: 100%;">a de las distancias que existen entre ciudad y ciudad del recorrido:</span><div style="text-align: left; font-family: arial;">  </div><span style="font-size: 100%;"><span style="">            </span>Longitud<span style="">  </span>= Recorrido[i]+Recorrdido[i+1]+Longitud<span style="">  </span>donde i: 0 hasta 4 </span><div style="text-align: left; font-family: arial;">  </div><div style="text-align: left; font-family: arial;">  </div><span style="font-size: 100%;">Las estructuras son las mismas que el RFS, se usa cola de prioridad (ascendente).<br></span><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/__CDMsEjzZdU/SE8asts9oJI/AAAAAAAAAGw/C-HaMi5OBwM/s1600-h/e.JPG"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="busqueda-informada-hill-climbing_files/e_005.JPG" alt="" id="BLOGGER_PHOTO_ID_5210412649375703186" border="0"></a><span>El problema de este algoritmo es que puede obtener un máximo local, dependiendo del estado inicial.</span><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/__CDMsEjzZdU/SE8bxvRwpwI/AAAAAAAAAHI/58MblLZd_wM/s1600-h/e.JPG"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="busqueda-informada-hill-climbing_files/e_003.JPG" alt="" id="BLOGGER_PHOTO_ID_5210413835209451266" border="0"></a><span style="font-weight: bold; font-style: italic;">Pruebas:</span><br>Teniendo 5 ciudades con las respectivas distancias:<br><br><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/__CDMsEjzZdU/SE8bG4gGCyI/AAAAAAAAAG4/98um2mY8mcM/s1600-h/e.JPG"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="busqueda-informada-hill-climbing_files/e.JPG" alt="" id="BLOGGER_PHOTO_ID_5210413098951117602" border="0"></a><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/__CDMsEjzZdU/SE8bRtHj2GI/AAAAAAAAAHA/gGDLvLTGuCo/s1600-h/e.JPG"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="busqueda-informada-hill-climbing_files/e_004.JPG" alt="" id="BLOGGER_PHOTO_ID_5210413284873984098" border="0"></a><p class="MsoNormal" style="text-align: justify;"></p>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<p class="post-footer-line post-footer-line-1">
+<span class="post-author">
+Publicado por
+Velasquez Vasquez
+</span>
+<span class="post-timestamp">
+en
+<a class="timestamp-link" href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html" title="permanent link">7:09 PM</a>
+</span>
+<span class="post-backlinks post-comment-link">
+</span>
+<span class="post-icons">
+<span class="item-control blog-admin pid-31295186">
+<a href="http://www.blogger.com/post-edit.g?blogID=2386704658709125175&amp;postID=2723038726081483964" title="Editar entrada">
+<span class="quick-edit-icon">&nbsp;</span>
+</a>
+</span>
+</span>
+</p>
+<p class="post-footer-line post-footer-line-2"></p>
+<p class="post-footer-line post-footer-line-3"></p>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h4>
+0
+comentarios:
+        
+</h4>
+<dl id="comments-block">
+</dl>
+<p class="comment-footer">
+<a href="https://www.blogger.com/comment.g?blogID=2386704658709125175&amp;postID=2723038726081483964" onclick="">Publicar un comentario en la entrada</a>
+</p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container">
+</div>
+</div>
+</div>
+<!-- google_ad_section_end -->
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="http://velasquez-berru.blogspot.com/2008/06/busqueda-online-en-entornos.html" id="Blog1_blog-pager-newer-link" title="Entrada más reciente">Entrada más reciente</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-bsqueda-primero-en.html" id="Blog1_blog-pager-older-link" title="Entradas antiguas">Entradas antiguas</a>
+</span>
+<a class="home-link" href="http://velasquez-berru.blogspot.com/">Página principal</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Suscribirse a:
+<a class="feed-link" href="http://velasquez-berru.blogspot.com/feeds/2723038726081483964/comments/default" target="_blank" type="application/atom+xml">Enviar comentarios (Atom)</a>
+</div>
+</div>
+</div></div>
+<div id="footer-wrapper">
+<!-- Este es un incentivo al trabajo en diseñar y adaptar esta plantilla, llega a ti de forma muy fácil y sin costo, tampoco cuesta nada dejes los link, gracias y que te sea útil! --><p class="links">Diseño e iconos por <a href="http://www.ndesign-studio.com/">N.Design Studio</a> | A Blogger por <a href="http://blogandweb.com/">Blog and Web</a></p></div>
+</div>
+<div id="sidebar-wrapper">
+<div class="sidebar section" id="sidebar">
+<div class="widget Label" id="Label1">
+<h2>Etiquetas</h2>
+<div class="widget-content">
+<ul>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%201">Laboratorio 1</a>
+
+        (2)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%2010">Laboratorio 10</a>
+
+        (1)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%2012">Laboratorio 12</a>
+
+        (1)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%202">Laboratorio 2</a>
+
+        (2)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%203">Laboratorio 3</a>
+
+        (5)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%204">Laboratorio 4</a>
+
+        (2)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%205">Laboratorio 5</a>
+
+        (1)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%206">Laboratorio 6</a>
+
+        (1)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%208">Laboratorio 8</a>
+
+        (1)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Laboratorio%209">Laboratorio 9</a>
+
+        (1)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Posters">Posters</a>
+
+        (1)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Proyecto%20del%20Curso">Proyecto del Curso</a>
+
+        (1)
+      </li>
+<li>
+<a href="http://velasquez-berru.blogspot.com/search/label/Proyecto%20I%20Unidad">Proyecto I Unidad</a>
+
+        (1)
+      </li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=2386704658709125175&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget" onclick='return _WidgetManager._PopupConfig(document.getElementById("Label1"));' target="configLabel1" title="Editar">
+<img alt="" src="busqueda-informada-hill-climbing_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+<div class="widget BlogArchive" id="BlogArchive1">
+<h2>Archivo del blog</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul>
+<li class="archivedate expanded">
+<a class="toggle" href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html?widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=toggle&amp;dir=close&amp;toggle=YEARLY-1199163600000&amp;toggleopen=MONTHLY-1217566800000">
+<span class="zippy toggle-open">▼ </span>
+</a>
+<a class="post-count-link" href="http://velasquez-berru.blogspot.com/search?updated-min=2008-01-01T00%3A00%3A00-05%3A00&amp;updated-max=2009-01-01T00%3A00%3A00-05%3A00&amp;max-results=20">2008</a>
+            (<span class="post-count">20</span>)
+          
+<ul>
+<li class="archivedate expanded">
+<a class="toggle" href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html?widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=toggle&amp;dir=close&amp;toggle=MONTHLY-1217566800000&amp;toggleopen=MONTHLY-1217566800000">
+<span class="zippy toggle-open">▼ </span>
+</a>
+<a class="post-count-link" href="http://velasquez-berru.blogspot.com/2008_08_01_archive.html">agosto</a>
+            (<span class="post-count">6</span>)
+          
+<ul class="posts">
+<li><a href="http://velasquez-berru.blogspot.com/2008/08/perceptron-de-rosemblat-forma-dual.html">Perceptron de Rosemblat Forma Dual</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/08/perceptron-de-rosemblat-forma-primal.html">Perceptron de Rosemblat Forma Primal</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/08/perceptron-clasificar-nueces.html">Perceptron (Clasificar Nueces)</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/08/red-naives-clasificacion-de-una-noticia.html">Red Naives (Clasificacion de una Noticia)</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/08/distribucion-conjunta-completa.html">Distribucion Conjunta Completa</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/08/psr-problema-de-satisfacion-de.html">PSR (Problema de Satisfacion de Restricciones)</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="archivedate collapsed">
+<a class="toggle" href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html?widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=toggle&amp;dir=open&amp;toggle=MONTHLY-1214888400000&amp;toggleopen=MONTHLY-1217566800000">
+<span class="zippy">► </span>
+</a>
+<a class="post-count-link" href="http://velasquez-berru.blogspot.com/2008_07_01_archive.html">julio</a>
+            (<span class="post-count">2</span>)
+          
+<ul class="posts">
+<li><a href="http://velasquez-berru.blogspot.com/2008/08/poda-alfa-beta-juego-del-acorralado.html">Poda alfa-beta (Juego del acorralado)</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/07/poster-existe-un-agente-en-tu-futuro.html">Poster: ¿Existe un agente en tu futuro?</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="archivedate collapsed">
+<a class="toggle" href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html?widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=toggle&amp;dir=open&amp;toggle=MONTHLY-1212296400000&amp;toggleopen=MONTHLY-1217566800000">
+<span class="zippy">► </span>
+</a>
+<a class="post-count-link" href="http://velasquez-berru.blogspot.com/2008_06_01_archive.html">junio</a>
+            (<span class="post-count">7</span>)
+          
+<ul class="posts">
+<li><a href="http://velasquez-berru.blogspot.com/2008/07/algoritmo-genetico-problema-agente.html">Algoritmo Genetico: Problema Agente Viajero (TSP)</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/06/busqueda-online-en-entornos.html">Busqueda Online en Entornos Desconocidos</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html">Busqueda Local: Hill-Climbing</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-bsqueda-primero-en.html">Busqueda Informada: Búsqueda Primero en Profundida...</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-bsqueda.html">Busqueda Informada: Búsqueda A*</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/06/cuestionario-capitulo-4.html">Cuestionario Capitulo 4</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/06/cuestionario-capitulo-3.html">Cuestionario Capitulo 3</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="archivedate collapsed">
+<a class="toggle" href="http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html?widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=toggle&amp;dir=open&amp;toggle=MONTHLY-1209618000000&amp;toggleopen=MONTHLY-1217566800000">
+<span class="zippy">► </span>
+</a>
+<a class="post-count-link" href="http://velasquez-berru.blogspot.com/2008_05_01_archive.html">mayo</a>
+            (<span class="post-count">5</span>)
+          
+<ul class="posts">
+<li><a href="http://velasquez-berru.blogspot.com/2008/05/resultados-experimentales.html">Búsqueda No Informada (Resultados Experimentales)</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/05/ejecucion-de-programa.html">Busqueda No Informada</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/05/plan-de-actividades_27.html">Plan de Actividades</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/05/primer-laboratorio-capitulo-2.html">Cuestionario Capitulo 2</a></li>
+<li><a href="http://velasquez-berru.blogspot.com/2008/05/primer-laboratorio-capitulo-1.html">Cuestionario Capitulo 1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=2386704658709125175&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget" onclick='return _WidgetManager._PopupConfig(document.getElementById("BlogArchive1"));' target="configBlogArchive1" title="Editar">
+<img alt="" src="busqueda-informada-hill-climbing_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class="clear"></div>
+</div>
+<!-- end content-wrapper -->
+</div></div>
+<!-- end outer-wrapper -->
+<script type="text/javascript" src="busqueda-informada-hill-climbing_files/4279243607-widgets.js"></script>
+<script type="text/javascript">
+_WidgetManager._Init('http://www.blogger.com/rearrange?blogID=2386704658709125175', 'http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html','2386704658709125175');
+_WidgetManager._SetPageActionUrl('http://www.blogger.com/display?blogID=2386704658709125175', 'pI6VNijBcfQ2_avVOXtWxE0RfSE:1242275285172');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'title': 'INTELIGENCIA ARTIFICIAL', 'pageType': 'item', 'url': 'http://velasquez-berru.blogspot.com/2008/06/busqueda-informada-hill-climbing.html', 'homepageUrl': 'http://velasquez-berru.blogspot.com/', 'searchLabel': '', 'searchQuery': '', 'pageName': 'Busqueda Local: Hill-Climbing', 'pageTitle': 'INTELIGENCIA ARTIFICIAL: Busqueda Local: Hill-Climbing', 'encoding': 'UTF-8', 'locale': 'es', 'isPrivate': false, 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42INTELIGENCIA ARTIFICIAL - Atom\42 href\75\42http://velasquez-berru.blogspot.com/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\42INTELIGENCIA ARTIFICIAL - RSS\42 href\75\42http://velasquez-berru.blogspot.com/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\42INTELIGENCIA ARTIFICIAL - Atom\42 href\75\42http://www.blogger.com/feeds/2386704658709125175/posts/default\42 /\76\n\74link rel\75\42EditURI\42 type\75\42application/rsd+xml\42 title\75\42RSD\42 href\75\42http://www.blogger.com/rsd.g?blogID\0752386704658709125175\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42INTELIGENCIA ARTIFICIAL - Atom\42 href\75\42http://velasquez-berru.blogspot.com/feeds/2723038726081483964/comments/default\42 /\76\n', 'meTag': '', 'openIdOpTag': '', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { var a\75window;function d(b){this.t\75{};this.tick\75function(c,h,e){var i\75e?e:(new Date).getTime();this.t[c]\75[i,h]};this.tick(\42start\42,null,b)}var f\75new d;a.jstiming\75{Timer:d,load:f};try{a.jstiming.pt\75a.external.pageT}catch(g){};function j(b){var c\0750;if(b.offsetParent){do c+\75b.offsetTop;while(b\75b.offsetParent)}return c}a.tickAboveFold\75function(b){j(b)\74\075750\46\46a.jstiming.load.tick(\42aft\42)};var k\75false;function l(){if(!k){k\75true;a.jstiming.load.tick(\42firstScrollTime\42)}}a.addEventListener?a.addEventListener(\42scroll\42,l,false):a.attachEvent(\42onscroll\42,l); })();\74/script\076'}}]);
+_WidgetManager._SetSystemMarkup({'layout': {'varName': '', 'template': '\74div class\75\47widget-wrap1\47\76\n\74div class\75\47widget-wrap2\47\76\n\74div class\75\47widget-wrap3\47\76\n\74div class\75\47widget-content\47\76\n\74div class\75\47layout-title\47\76\74data:layout-title\76\74/data:layout-title\76\74/div\76\n\74a class\75\47editlink\47 expr:href\75\47data:widget.quickEditUrl\47 expr:onclick\75\47\46quot;return _WidgetManager._PopupConfig(document.getElementById(\\\46quot;\46quot; +       data:widget.instanceId + \46quot;\\\46quot;));\46quot;\47 target\75\47chooseWidget\47\76\74data:edit-link\76\74/data:edit-link\76\74/a\76\n\74/div\76\n\74/div\76\n\74/div\76\n\74/div\076'}, 'quickedit': {'varName': '', 'template': '\74div class\75\47clear\47\76\74/div\76\n\74span class\75\47widget-item-control\47\76\n\74span class\75\47item-control blog-admin\47\76\n\74a class\75\47quickedit\47 expr:href\75\47data:widget.quickEditUrl\47 expr:onclick\75\47\46quot;return _WidgetManager._PopupConfig(document.getElementById(\\\46quot;\46quot; +       data:widget.instanceId + \46quot;\\\46quot;));\46quot;\47 expr:target\75\47\46quot;config\46quot; + data:widget.instanceId\47 expr:title\75\47data:edit-link\47\76\n\74img alt\75\47\47 height\75\04718\47 src\75\47http://img1.blogblog.com/img/icon18_wrench_allbkg.png\47 width\75\04718\47/\76\n\74/a\76\n\74/span\76\n\74/span\76\n\74div class\75\47clear\47\76\74/div\076'}, 'all-head-content': {'varName': 'page', 'template': '\74data:blog.latencyHeadScript\76\74/data:blog.latencyHeadScript\76\n\74meta expr:content\75\47\46quot;text/html; charset\75\46quot; + data:page.encoding\47 http-equiv\75\47Content-Type\47/\76\n\74meta content\75\47true\47 name\75\47MSSmartTagsPreventParsing\47/\76\n\74meta content\75\47blogger\47 name\75\47generator\47/\76\n\74link href\75\47http://www.blogger.com/favicon.ico\47 rel\75\47icon\47 type\75\47image/vnd.microsoft.icon\47/\76\n\74data:blog.feedLinks\76\74/data:blog.feedLinks\76\n\74data:blog.meTag\76\74/data:blog.meTag\76\n\74data:blog.openIdOpTag\76\74/data:blog.openIdOpTag\76\n\74b:if cond\75\47data:page.isPrivate\47\76\n\74meta content\75\47NOINDEX,NOFOLLOW\47 name\75\47robots\47/\76\n\74/b:if\076'}});
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar',{'main': {'varName': '', 'template': '\74b:if cond\75\47data:title\47\76\n\74h2\76\74data:title\76\74/data:title\76\74/h2\76\n\74/b:if\76\n\74div class\75\47widget-content\47\76\n\74ul\76\n\74b:loop values\75\47data:labels\47 var\75\47label\47\76\n\74li\76\n\74b:if cond\75\47data:blog.url \75\75 data:label.url\47\76\n\74data:label.name\76\74/data:label.name\76\n\74b:else\76\74/b:else\76\n\74a expr:href\75\47data:label.url\47\76\74data:label.name\76\74/data:label.name\76\74/a\76\n\74/b:if\76\n        (\74data:label.count\76\74/data:label.count\76)\n      \74/li\76\n\74/b:loop\76\n\74/ul\76\n\74b:include name\75\47quickedit\47\76\74/b:include\76\n\74/div\076'}}, document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar',{'main': {'varName': '', 'template': '\74b:if cond\75\47data:title\47\76\n\74h2\76\74data:title\76\74/data:title\76\74/h2\76\n\74/b:if\76\n\74div class\75\47widget-content\47\76\n\74div id\75\47ArchiveList\47\76\n\74div expr:id\75\47data:widget.instanceId + \46quot;_ArchiveList\46quot;\47\76\n\74b:if cond\75\47data:style \75\75 \46quot;HIERARCHY\46quot;\47\76\n\74b:include data\75\47data\47 name\75\47interval\47\76\74/b:include\76\n\74/b:if\76\n\74b:if cond\75\47data:style \75\75 \46quot;FLAT\46quot;\47\76\n\74b:include data\75\47data\47 name\75\47flat\47\76\74/b:include\76\n\74/b:if\76\n\74b:if cond\75\47data:style \75\75 \46quot;MENU\46quot;\47\76\n\74b:include data\75\47data\47 name\75\47menu\47\76\74/b:include\76\n\74/b:if\76\n\74/div\76\n\74/div\76\n\74b:include name\75\47quickedit\47\76\74/b:include\76\n\74/div\076'}, 'flat': {'varName': 'data', 'template': '\74ul\76\n\74b:loop values\75\47data:data\47 var\75\47i\47\76\n\74li class\75\47archivedate\47\76\n\74a expr:href\75\47data:i.url\47\76\74data:i.name\76\74/data:i.name\76\74/a\76 (\74data:i.post-count\76\74/data:i.post-count\76)\n      \74/li\76\n\74/b:loop\76\n\74/ul\076'}, 'menu': {'varName': 'data', 'template': '\74select expr:id\75\47data:widget.instanceId + \46quot;_ArchiveMenu\46quot;\47\76\n\74option value\75\47\47\76\74data:title\76\74/data:title\76\74/option\76\n\74b:loop values\75\47data:data\47 var\75\47i\47\76\n\74option expr:value\75\47data:i.url\47\76\74data:i.name\76\74/data:i.name\76 (\74data:i.post-count\76\74/data:i.post-count\76)\74/option\76\n\74/b:loop\76\n\74/select\076'}, 'interval': {'varName': 'intervalData', 'template': '\74b:loop values\75\47data:intervalData\47 var\75\47i\47\76\n\74ul\76\n\74li expr:class\75\47\46quot;archivedate \46quot; + data:i.expclass\47\76\n\74b:include data\75\47i\47 name\75\47toggle\47\76\74/b:include\76\n\74a class\75\47post-count-link\47 expr:href\75\47data:i.url\47\76\74data:i.name\76\74/data:i.name\76\74/a\76\n            (\74span class\75\47post-count\47\76\74data:i.post-count\76\74/data:i.post-count\76\74/span\76)\n          \74b:if cond\75\47data:i.data\47\76\n\74b:include data\75\47i.data\47 name\75\47interval\47\76\74/b:include\76\n\74/b:if\76\n\74b:if cond\75\47data:i.posts\47\76\n\74b:include data\75\47i.posts\47 name\75\47posts\47\76\74/b:include\76\n\74/b:if\76\n\74/li\76\n\74/ul\76\n\74/b:loop\076'}, 'toggle': {'varName': 'interval', 'template': '\74b:if cond\75\47data:interval.toggleId\47\76\n\74b:if cond\75\47data:interval.expclass \75\75 \46quot;expanded\46quot;\47\76\n\74a class\75\47toggle\47 expr:href\75\47data:widget.actionUrl + \46quot;\46amp;action\75toggle\46quot; +       \46quot;\46amp;dir\75close\46amp;toggle\75\46quot; + data:interval.toggleId +       \46quot;\46amp;toggleopen\75\46quot; + data:toggleopen\47\76\n\74span class\75\47zippy toggle-open\47\76\46#9660; \74/span\76\n\74/a\76\n\74b:else\76\74/b:else\76\n\74a class\75\47toggle\47 expr:href\75\47data:widget.actionUrl + \46quot;\46amp;action\75toggle\46quot; +         \46quot;\46amp;dir\75open\46amp;toggle\75\46quot; + data:interval.toggleId +         \46quot;\46amp;toggleopen\75\46quot; + data:toggleopen\47\76\n\74span class\75\47zippy\47\76\46#9658; \74/span\76\n\74/a\76\n\74/b:if\76\n\74/b:if\076'}, 'posts': {'varName': 'posts', 'template': '\74ul class\75\47posts\47\76\n\74b:loop values\75\47data:posts\47 var\75\47i\47\76\n\74li\76\74a expr:href\75\47data:i.url\47\76\74data:i.title\76\74/data:i.title\76\74/a\76\74/li\76\n\74/b:loop\76\n\74/ul\076'}}, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header'));
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main',{'main': {'varName': 'top', 'template': '\74div class\75\47blog-posts\47\76\n\74b:include data\75\47top\47 name\75\47status-message\47\76\74/b:include\76\n\74data:adStart\76\74/data:adStart\76\n\74b:loop values\75\47data:posts\47 var\75\47post\47\76\n\74b:include data\75\47post\47 name\75\47post\47\76\74/b:include\76\n\74b:if cond\75\47data:blog.pageType \75\75 \46quot;item\46quot;\47\76\n\74b:include data\75\47post\47 name\75\47comments\47\76\74/b:include\76\n\74/b:if\76\n\74/b:loop\76\n\74data:adEnd\76\74/data:adEnd\76\n\74/div\76\n\74b:include name\75\47nextprev\47\76\74/b:include\76\n\74b:include name\75\47feedLinks\47\76\74/b:include\076'}, 'nextprev': {'varName': '', 'template': '\74div class\75\47blog-pager\47 id\75\47blog-pager\47\76\n\74b:if cond\75\47data:newerPageUrl\47\76\n\74span id\75\47blog-pager-newer-link\47\76\n\74a class\75\47blog-pager-newer-link\47 expr:href\75\47data:newerPageUrl\47 expr:id\75\47data:widget.instanceId + \46quot;_blog-pager-newer-link\46quot;\47 expr:title\75\47data:newerPageTitle\47\76\74data:newerPageTitle\76\74/data:newerPageTitle\76\74/a\76\n\74/span\76\n\74/b:if\76\n\74b:if cond\75\47data:olderPageUrl\47\76\n\74span id\75\47blog-pager-older-link\47\76\n\74a class\75\47blog-pager-older-link\47 expr:href\75\47data:olderPageUrl\47 expr:id\75\47data:widget.instanceId + \46quot;_blog-pager-older-link\46quot;\47 expr:title\75\47data:olderPageTitle\47\76\74data:olderPageTitle\76\74/data:olderPageTitle\76\74/a\76\n\74/span\76\n\74/b:if\76\n\74b:if cond\75\47data:blog.homepageUrl !\75 data:blog.url\47\76\n\74a class\75\47home-link\47 expr:href\75\47data:blog.homepageUrl\47\76\74data:homeMsg\76\74/data:homeMsg\76\74/a\76\n\74b:else\76\74/b:else\76\n\74b:if cond\75\47data:newerPageUrl\47\76\n\74a class\75\47home-link\47 expr:href\75\47data:blog.homepageUrl\47\76\74data:homeMsg\76\74/data:homeMsg\76\74/a\76\n\74/b:if\76\n\74/b:if\76\n\74/div\76\n\74div class\75\47clear\47\76\74/div\076'}, 'post': {'varName': 'post', 'template': '\74div class\75\47post uncustomized-post-template\47\76\n\74a expr:name\75\47data:post.id\47\76\74/a\76\n\74b:if cond\75\47data:post.dateHeader\47\76\n\74div id\75\47fecha\47\76\n\74script\76remplaza_fecha(\46#39;\74data:post.dateHeader\76\74/data:post.dateHeader\76\46#39;);\74/script\76\n\74/div\76\n\74/b:if\76\n\74b:if cond\75\47data:post.title\47\76\n\74h3 class\75\47post-title\47\76\n\74b:if cond\75\47data:post.link\47\76\n\74a expr:href\75\47data:post.link\47\76\74data:post.title\76\74/data:post.title\76\74/a\76\n\74b:else\76\74/b:else\76\n\74b:if cond\75\47data:post.url\47\76\n\74a expr:href\75\47data:post.url\47\76\74data:post.title\76\74/data:post.title\76\74/a\76\n\74b:else\76\74/b:else\76\n\74data:post.title\76\74/data:post.title\76\n\74/b:if\76\n\74/b:if\76\n\74/h3\76\n\74/b:if\76\n\74span class\75\47post-labels\47\76\n\74b:if cond\75\47data:post.labels\47\76\n\74data:postLabelsLabel\76\74/data:postLabelsLabel\76\n\74b:loop values\75\47data:post.labels\47 var\75\47label\47\76\n\74a expr:href\75\47data:label.url\47 rel\75\47tag\47\76\74data:label.name\76\74/data:label.name\76\74/a\76\74b:if cond\75\47data:label.isLast !\75 \46quot;true\46quot;\47\76,\74/b:if\76\n\74/b:loop\76\n\74/b:if\76\n\74/span\76\n\74span class\75\47post-comment-link\47\76\n\74b:if cond\75\47data:blog.pageType !\75 \46quot;item\46quot;\47\76\n\74b:if cond\75\47data:post.allowComments\47\76\n\74a class\75\47comment-link\47 expr:href\75\47data:post.addCommentUrl\47 expr:onclick\75\47data:post.addCommentOnclick\47\76\74b:if cond\75\47data:post.numComments \75\75 1\47\0761 \74data:top.commentLabel\76\74/data:top.commentLabel\76\74b:else\76\74/b:else\76\74data:post.numComments\76\74/data:post.numComments\76\n\74data:top.commentLabelPlural\76\74/data:top.commentLabelPlural\76\74/b:if\76\74/a\76\n\74/b:if\76\n\74/b:if\76\n\74/span\76\n\74div class\75\47post-header-line-1\47\76\74/div\76\n\74div class\75\47post-body\47\76\n\74p\76\74data:post.body\76\74/data:post.body\76\74/p\76\n\74div style\75\47clear: both;\47\76\74/div\76\n\74/div\76\n\74div class\75\47post-footer\47\76\n\74p class\75\47post-footer-line post-footer-line-1\47\76\n\74span class\75\47post-author\47\76\n\74b:if cond\75\47data:top.showAuthor\47\76\n\74data:top.authorLabel\76\74/data:top.authorLabel\76\n\74data:post.author\76\74/data:post.author\76\n\74/b:if\76\n\74/span\76\n\74span class\75\47post-timestamp\47\76\n\74b:if cond\75\47data:top.showTimestamp\47\76\n\74data:top.timestampLabel\76\74/data:top.timestampLabel\76\n\74b:if cond\75\47data:post.url\47\76\n\74a class\75\47timestamp-link\47 expr:href\75\47data:post.url\47 title\75\47permanent link\47\76\74data:post.timestamp\76\74/data:post.timestamp\76\74/a\76\n\74/b:if\76\n\74/b:if\76\n\74/span\76\n\74span class\75\47post-backlinks post-comment-link\47\76\n\74b:if cond\75\47data:blog.pageType !\75 \46quot;item\46quot;\47\76\n\74b:if cond\75\47data:post.showBacklinks\47\76\n\74a class\75\47comment-link\47 expr:href\75\47data:post.url + \46quot;#links\46quot;\47\76\74data:top.backlinkLabel\76\74/data:top.backlinkLabel\76\74/a\76\n\74/b:if\76\n\74/b:if\76\n\74/span\76\n\74span class\75\47post-icons\47\76\n\74b:if cond\75\47data:post.emailPostUrl\47\76\n\74span class\75\47item-action\47\76\n\74a expr:href\75\47data:post.emailPostUrl\47 expr:title\75\47data:top.emailPostMsg\47\76\n\74span class\75\47email-post-icon\47\76\46#160;\74/span\76\n\74/a\76\n\74/span\76\n\74/b:if\76\n\74b:include data\75\47post\47 name\75\47postQuickEdit\47\76\74/b:include\76\n\74/span\76\n\74/p\76\n\74p class\75\47post-footer-line post-footer-line-2\47\76\74/p\76\n\74p class\75\47post-footer-line post-footer-line-3\47\76\74/p\76\n\74/div\76\n\74/div\076'}, 'postQuickEdit': {'varName': 'post', 'template': '\74b:if cond\75\47data:post.editUrl\47\76\n\74span expr:class\75\47\46quot;item-control \46quot; + data:post.adminClass\47\76\n\74a expr:href\75\47data:post.editUrl\47 expr:title\75\47data:top.editPostMsg\47\76\n\74span class\75\47quick-edit-icon\47\76\46#160;\74/span\76\n\74/a\76\n\74/span\76\n\74/b:if\076'}, 'commentDeleteIcon': {'varName': 'comment', 'template': '\74span expr:class\75\47\46quot;item-control \46quot; + data:comment.adminClass\47\76\n\74a expr:href\75\47data:comment.deleteUrl\47 expr:title\75\47data:top.deleteCommentMsg\47\76\n\74span class\75\47delete-comment-icon\47\76\46#160;\74/span\76\n\74/a\76\n\74/span\076'}, 'backlinkDeleteIcon': {'varName': 'backlink', 'template': '\74span expr:class\75\47\46quot;item-control \46quot; + data:backlink.adminClass\47\76\n\74a expr:href\75\47data:backlink.deleteUrl\47 expr:title\75\47data:top.deleteBacklinkMsg\47\76\n\74span class\75\47delete-comment-icon\47\76\46#160;\74/span\76\n\74/a\76\n\74/span\076'}, 'comments': {'varName': 'post', 'template': '\74div class\75\47comments\47 id\75\47comments\47\76\n\74a name\75\47comments\47\76\74/a\76\n\74b:if cond\75\47data:post.allowComments\47\76\n\74h4\76\n\74b:if cond\75\47data:post.numComments \75\75 1\47\76\n          1 \74data:commentLabel\76\74/data:commentLabel\76:\n        \74b:else\76\74/b:else\76\n\74data:post.numComments\76\74/data:post.numComments\76\n\74data:commentLabelPlural\76\74/data:commentLabelPlural\76:\n        \74/b:if\76\n\74/h4\76\n\74dl id\75\47comments-block\47\76\n\74b:loop values\75\47data:post.comments\47 var\75\47comment\47\76\n\74dt class\75\47comment-author\47 expr:id\75\47data:comment.anchorName\47\76\n\74a expr:name\75\47data:comment.anchorName\47\76\74/a\76\n\74b:if cond\75\47data:comment.authorUrl\47\76\n\74a expr:href\75\47data:comment.authorUrl\47 rel\75\47nofollow\47\76\74data:comment.author\76\74/data:comment.author\76\74/a\76\n\74b:else\76\74/b:else\76\n\74data:comment.author\76\74/data:comment.author\76\n\74/b:if\76\n\74data:commentPostedByMsg\76\74/data:commentPostedByMsg\76\n\74/dt\76\n\74dd class\75\47comment-body\47\76\n\74b:if cond\75\47data:comment.isDeleted\47\76\n\74span class\75\47deleted-comment\47\76\74data:comment.body\76\74/data:comment.body\76\74/span\76\n\74b:else\76\74/b:else\76\n\74p\76\74data:comment.body\76\74/data:comment.body\76\74/p\76\n\74/b:if\76\n\74/dd\76\n\74dd class\75\47comment-footer\47\76\n\74span class\75\47comment-timestamp\47\76\n\74a expr:href\75\47data:comment.url\47 title\75\47comment permalink\47\76\n\74data:comment.timestamp\76\74/data:comment.timestamp\76\n\74/a\76\n\74b:include data\75\47comment\47 name\75\47commentDeleteIcon\47\76\74/b:include\76\n\74/span\76\n\74/dd\76\n\74/b:loop\76\n\74/dl\76\n\74p class\75\47comment-footer\47\76\n\74a expr:href\75\47data:post.addCommentUrl\47 expr:onclick\75\47data:post.addCommentOnclick\47\76\74data:postCommentMsg\76\74/data:postCommentMsg\76\74/a\76\n\74/p\76\n\74/b:if\76\n\74div id\75\47backlinks-container\47\76\n\74div expr:id\75\47data:widget.instanceId + \46quot;_backlinks-container\46quot;\47\76\n\74b:if cond\75\47data:post.showBacklinks\47\76\n\74b:include data\75\47post\47 name\75\47backlinks\47\76\74/b:include\76\n\74/b:if\76\n\74/div\76\n\74/div\76\n\74/div\076'}, 'comment-form': {'varName': 'post', 'template': '\74div class\75\47comment-form\47\76\n\74a name\75\47comment-form\47\76\74/a\76\n\74h4 id\75\47comment-post-message\47\76\74data:postCommentMsg\76\74/data:postCommentMsg\76\74/h4\76\n\74p\76\74data:blogCommentMessage\76\74/data:blogCommentMessage\76\74/p\76\n\74data:blogTeamBlogMessage\76\74/data:blogTeamBlogMessage\76\n\74a expr:href\75\47data:post.commentFormIframeSrc\47 id\75\47comment-editor-src\47\76\74/a\76\n\74iframe allowtransparency\75\47true\47 class\75\47blogger-iframe-colorize blogger-comment-from-post\47 frameborder\75\0470\47 height\75\047275\47 id\75\47comment-editor\47 name\75\47comment-editor\47 scrolling\75\47no\47 src\75\47\47 width\75\047100%\47\76\74/iframe\76\n\74data:post.friendConnectJs\76\74/data:post.friendConnectJs\76\n\74data:post.cmtfpIframe\76\74/data:post.cmtfpIframe\76\n\74script type\75\47text/javascript\47\76\n      BLOG_CMT_createIframe(\46#39;\74data:post.appRpcRelayPath\76\74/data:post.appRpcRelayPath\76\46#39;, \46#39;\74data:post.communityId\76\74/data:post.communityId\76\46#39;);\n    \74/script\76\n\74/div\076'}, 'backlinks': {'varName': 'post', 'template': '\74a name\75\47links\47\76\74/a\76\74h4\76\74data:post.backlinksLabel\76\74/data:post.backlinksLabel\76\74/h4\76\n\74b:if cond\75\47data:post.numBacklinks !\75 0\47\76\n\74dl class\75\47comments-block\47 id\75\47comments-block\47\76\n\74b:loop values\75\47data:post.backlinks\47 var\75\47backlink\47\76\n\74div class\75\47collapsed-backlink backlink-control\47\76\n\74dt class\75\47comment-title\47\76\n\74span class\75\47backlink-toggle-zippy\47\76\46#160;\74/span\76\n\74a expr:href\75\47data:backlink.url\47 rel\75\47nofollow\47\76\74data:backlink.title\76\74/data:backlink.title\76\74/a\76\n\74b:include data\75\47backlink\47 name\75\47backlinkDeleteIcon\47\76\74/b:include\76\n\74/dt\76\n\74dd class\75\47comment-body collapseable\47\76\n\74data:backlink.snippet\76\74/data:backlink.snippet\76\n\74/dd\76\n\74dd class\75\47comment-footer collapseable\47\76\n\74span class\75\47comment-author\47\76\74data:post.authorLabel\76\74/data:post.authorLabel\76\n\74data:backlink.author\76\74/data:backlink.author\76\74/span\76\n\74span class\75\47comment-timestamp\47\76\74data:post.timestampLabel\76\74/data:post.timestampLabel\76\n\74data:backlink.timestamp\76\74/data:backlink.timestamp\76\74/span\76\n\74/dd\76\n\74/div\76\n\74/b:loop\76\n\74/dl\76\n\74/b:if\76\n\74p class\75\47comment-footer\47\76\n\74a class\75\47comment-link\47 expr:href\75\47data:post.createLinkUrl\47 expr:id\75\47data:widget.instanceId + \46quot;_backlinks-create-link\46quot;\47 target\75\47_blank\47\76\74data:post.createLinkLabel\76\74/data:post.createLinkLabel\76\74/a\76\n\74/p\076'}, 'feedLinks': {'varName': '', 'template': '\74b:if cond\75\47data:blog.pageType !\75 \46quot;item\46quot;\47\76\n\74b:if cond\75\47data:feedLinks\47\76\n\74div class\75\47blog-feeds\47\76\n\74b:include data\75\47feedLinks\47 name\75\47feedLinksBody\47\76\74/b:include\76\n\74/div\76\n\74/b:if\76\n\74b:else\76\74/b:else\76\n\74div class\75\47post-feeds\47\76\n\74b:loop values\75\47data:posts\47 var\75\47post\47\76\n\74b:if cond\75\47data:post.allowComments\47\76\n\74b:if cond\75\47data:post.feedLinks\47\76\n\74b:include data\75\47post.feedLinks\47 name\75\47feedLinksBody\47\76\74/b:include\76\n\74/b:if\76\n\74/b:if\76\n\74/b:loop\76\n\74/div\76\n\74/b:if\076'}, 'feedLinksBody': {'varName': 'links', 'template': '\74div class\75\47feed-links\47\76\n\74data:feedLinksMsg\76\74/data:feedLinksMsg\76\n\74b:loop values\75\47data:links\47 var\75\47f\47\76\n\74a class\75\47feed-link\47 expr:href\75\47data:f.url\47 expr:type\75\47data:f.mimeType\47 target\75\47_blank\47\76\74data:f.name\76\74/data:f.name\76 (\74data:f.feedType\76\74/data:f.feedType\76)\74/a\76\n\74/b:loop\76\n\74/div\076'}, 'status-message': {'varName': '', 'template': '\74b:if cond\75\47data:navMessage\47\76\n\74div class\75\47status-msg-wrap\47\76\n\74div class\75\47status-msg-body\47\76\n\74data:navMessage\76\74/data:navMessage\76\n\74/div\76\n\74div class\75\47status-msg-border\47\76\n\74div class\75\47status-msg-bg\47\76\n\74div class\75\47status-msg-hidden\47\76\74data:navMessage\76\74/data:navMessage\76\74/div\76\n\74/div\76\n\74/div\76\n\74/div\76\n\74div style\75\47clear: both;\47\76\74/div\76\n\74/b:if\076'}}, document.getElementById('Blog1'), {}, 'displayModeFull'));
+</script>
+</body></html>

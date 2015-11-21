@@ -1,0 +1,15 @@
+Hill Climbing Algorithm
+   currentNode = startNode;
+   loop do
+      L = NEIGHBORS(currentNode);
+      nextEval = -INF;
+      nextNode = NULL;
+      for all x in L 
+         if (EVAL(x) > nextEval)
+              nextNode = x;
+              nextEval = EVAL(x);
+      if nextEval <= EVAL(currentNode)
+         //Return current node since no better neighbors exist
+         return currentNode;
+      currentNode = nextNode;
+

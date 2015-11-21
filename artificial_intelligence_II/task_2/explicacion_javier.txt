@@ -1,0 +1,35 @@
+H1: 10 01 1 11 10 0
+H2: 01 11 0 10 01 0
+con <d1=1,d2=3> dividirias H1: 1|0 01 1 11 1|0 0
+
+fiajate que el primero esta dividio en tres parts A B C y el segundo en D E F
+sabes que al hacer crossover generas un nuevo cromosoma A E C y otro D B F
+
+la vaina es que ya que unes de esa manera lo que quieres es mantener un individuo bien formado es decir que el numero de genes que lo conforman sea multiplo del numero de genes de un cromosoma despues de la union
+
+entonces ellos no te dicen como sacarlo pero tu puedes hacerlo de la siguinete forma: dado que la primera division es random entonces sabes que el primer individuo esta dividio en los siguinetes pedazos 1|(8-1)|(lenght - 8) = 1 7 2, ese es el numero de elemntos en cada pedazo, y el segundo individuo esta dividio en X Z Y
+
+Para esta division: 
+  H1 (div): 1 7 2
+  H2 (div) : X Z Y, donde Z = Y-X
+
+(d1,d2) valido si y solo si -->
+  
+(1+z+2) mod 5 = 0 and (x+7+(lenght - y)) mod 5 = 0
+
+for ( x=0 -> x=length-2):
+    for(y=x+1 -> y=lenght-1):
+
+corrida para ejemplo anterior:
+  x=1,y=2 --> {
+  	z=1;
+  	1+z+2 mod 5 != 0 --> skip
+  }
+  
+  x=1,y=3 --> {
+  	z=2;
+  	1+z+2 mod 5 = 0 --> true;
+	x+7+ (lenght - y) mod 5 = 0 --> true
+ 	
+	entonces (1,3) es valido
+  }

@@ -1,0 +1,104 @@
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+
+using namespace std;
+
+class Estado{
+  char matriz[3][3];
+public:
+  char pos_cero[2];
+  Estado();
+  Estado(char *info_matriz);
+  void print();
+  int es_solucion();
+  int es_igual(Estado otro);
+  void swap(short int num1[2], short int num2[2]);
+};
+
+
+//Constructor de la clase Estado
+Estado::Estado(){
+  int i,j;
+  for(i=0;i<3;i++){
+    for(j=0;j<3;j++)
+      matriz[i][j]='0';
+  }
+  pos_cero[0]='0';
+  pos_cero[1]='0';
+}
+
+//Constructor de la clase Estado con argumentos.
+Estado::Estado(char *info_matriz){
+  int i,j;
+  for(i=0;i<3;i++){
+    for(j=0;j<3;j++){
+      if(*info_matriz=='0'){
+	pos_cero[0]=(char)(i+48);
+	pos_cero[1]=(char)(j+48);
+      }
+      matriz[i][j]=*info_matriz;
+      info_matriz++;
+    }
+  }
+}
+
+//Procedimiento que imprime la matriz de un estado
+void Estado::print(){
+  int i,j;
+  for (i=0;i<3;i++){
+    for(j=0;j<3;j++)
+      cout<<matriz[i][j]<<' ';
+    cout<<'\n';
+  }
+  cout<<'\n'<<pos_cero[0]<<' '<<pos_cero[1]<<'\n';
+}
+
+//Funcion booleana que verifica si la matriz de un estado representa la solucion del problema.
+int Estado::es_solucion(){
+  if(matriz[0][0]=='1' && matriz[0][1]=='2' && matriz[0][2]=='3' && 
+     matriz[1][0]=='4' && matriz[1][1]=='5' && matriz[1][2]=='6' &&
+     matriz[2][0]=='7' && matriz[2][1]=='8' && matriz[2][2]=='0')  return 1;
+  else return 0;
+}
+
+int Estado::es_igual(Estado otro){
+  int i,j;
+  for (i=0;i<3;i++){
+    for(j=0;j<3;j++)
+      if (matriz[i][j]!=otro.matriz[i][j]) return 0;
+  }
+  return 1;
+}
+
+void Estado::swap(short int num1[2],short int num2[2]){
+  short int i = num1[0];
+  short int j = num1[1];
+  char aux = matriz[i][j];
+  short int m = num2[0];
+  short int l = num2[1];
+  matriz[i][j] = matriz[m][l];
+  matriz[m][l] = aux;
+}
+
+//Pruebas para verificar que la clase se creo bien :P
+int main(){
+  Estado est1;
+  char datos[]= "123456780";
+  Estado est2(datos);
+  est1.print();
+  est2.print();
+  short int num1[2],num2[2];
+  num1[0]=0;
+  num1[1]=0;
+  num2[0]=1;
+  num2[1]=1;
+  est2.swap(num1,num2);
+  if (est1.es_solucion()) cout<<"El primer estado es solucion\n";
+  else cout<<"El segundo estado no es solucion\n";
+  if (est2.es_solucion()) cout<<"El segundo estado es solucion\n";
+  else cout<<"El segundo estado no es solucion\n";
+  if(est1.es_igual(est2)) cout<<"Los dos estados son iguales\n";
+  else cout<<"Los dos estados son diferentes\n";
+  return 1;
+}
